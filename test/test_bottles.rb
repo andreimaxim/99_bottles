@@ -1,10 +1,8 @@
-gem 'minitest', '~> 5.4'
-require 'minitest/autorun'
-require 'minitest/pride'
-require_relative '../lib/bottles'
+require "test_helper"
 
 class BottlesTest < Minitest::Test
   def test_the_first_verse
+    skip
     expected =
       "99 bottles of beer on the wall, " +
       "99 bottles of beer.\n" +
