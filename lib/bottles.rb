@@ -1,6 +1,12 @@
+require_relative "first_verse"
+require_relative "second_verse"
+
 class Bottles
   def verse(number)
-    "#{first_line(number)}\n#{second_line(number - 1)}\n"
+    first_verse = FirstVerse.new number
+    second_verse = SecondVerse.new number - 1
+
+    [ first_verse, second_verse ].join("\n")
   end
 
   private
