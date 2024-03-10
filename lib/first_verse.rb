@@ -1,24 +1,11 @@
 class FirstVerse
-  attr_reader :number
-
   def initialize(number)
     @number = number
   end
 
   def to_s
-    "#{pluralized_number(capitalize: true)} of beer on the wall, #{pluralized_number} of beer."
-  end
+    number_with_bottles = Bottles.number_with_bottles(@number)
 
-  def pluralized_number(capitalize: false)
-    text = case number
-    when 0
-      "no more bottles"
-    when 1
-      "1 bottle"
-    else
-      "#{number} bottles"
-    end
-
-    capitalize ? text.capitalize : text
+    "#{number_with_bottles.capitalize} of beer on the wall, #{number_with_bottles} of beer."
   end
 end

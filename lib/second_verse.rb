@@ -1,12 +1,10 @@
 class SecondVerse
-  attr_reader :number
-
   def initialize(number)
     @number = number
   end
 
   def to_s
-    case number
+    case @number
     when -1
       "Go to the store and buy some more, 99 bottles of beer on the wall.\n"
     when 0
@@ -16,18 +14,9 @@ class SecondVerse
     end
   end
 
-  def second_part
-    "#{pluralized_number} of beer on the wall."
-  end
+  private
 
-  def pluralized_number
-    case number
-    when 0
-      "no more bottles"
-    when 1
-      "1 bottle"
-    else
-      "#{number} bottles"
-    end
+  def second_part
+    "#{Bottles.number_with_bottles(@number)} of beer on the wall."
   end
 end

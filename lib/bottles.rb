@@ -5,13 +5,25 @@ class Bottles
   FIRST_NUMBER = 99
   LAST_NUMBER = 0
 
+  class << self
+    def number_with_bottles(number)
+      case number
+      when 0
+        "no more bottles"
+      when 1
+        "1 bottle"
+      else
+        "#{number} bottles"
+      end
+    end
+  end
+
   def song
     verses(FIRST_NUMBER, LAST_NUMBER)
   end
 
-  def verses(first_number, last_number)
-    verse_numbers = range_to_verse_numbers(first_number, last_number)
-    verse_numbers.map { |number| verse(number) }.join("\n")
+  def verses(first, last)
+    range_to_verse_numbers(first, last).map { |number| verse(number) }.join("\n")
   end
 
   def verse(number)
