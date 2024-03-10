@@ -2,6 +2,18 @@ require_relative "first_verse"
 require_relative "second_verse"
 
 class Bottles
+  FIRST_NUMBER = 99
+  LAST_NUMBER = 0
+
+  def song
+    verses(FIRST_NUMBER, LAST_NUMBER)
+  end
+
+  def verses(first_number, last_number)
+    verse_numbers = range_to_verse_numbers(first_number, last_number)
+    verse_numbers.map { |number| verse(number) }.join("\n")
+  end
+
   def verse(number)
     first_verse = FirstVerse.new number
     second_verse = SecondVerse.new number - 1
@@ -11,28 +23,10 @@ class Bottles
 
   private
 
-  def first_line(number)
-    "#{pluralize(number)} of beer on the wall, #{pluralize(number)} of beer."
-  end
+  def range_to_verse_numbers(first_number, last_number)
+    a = first_number < last_number ? first_number : last_number
+    b = first_number < last_number ? last_number : first_number
 
-  def second_line(number)
-    first = if number >= 1
-      "Take one down and pass it around"
-    else
-      "Take it down and pass it around"
-    end
-
-    "#{first}, #{pluralize( number)} of beer on the wall."
-  end
-
-  def pluralize(number)
-    case number
-    when 0
-      "no more bottles"
-    when 1
-      "1 bottle"
-    else
-      "#{number} bottles"
-    end
+    (a..b).to_a.reverse
   end
 end
